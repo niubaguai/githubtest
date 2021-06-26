@@ -187,7 +187,7 @@ public class UserController {
         //业务层操作
         userService.updateUserDetail(vo, id);
         DataResult result = DataResult.success();
-
+//        print()
         return result;
     }
 
