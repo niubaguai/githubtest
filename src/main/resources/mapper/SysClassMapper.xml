@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pan.dao.SysClassDao">
+  <resultMap id="BaseResultMap" type="com.pan.entity.SysClass">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="class_no" jdbcType="VARCHAR" property="classNo" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="pid" jdbcType="VARCHAR" property="pid" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="relation_code" jdbcType="VARCHAR" property="relationCode" />
+    <result column="class_teacher_id" jdbcType="VARCHAR" property="classTeacherId" />
+    <result column="teacher_name" jdbcType="VARCHAR" property="teacherName" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="deleted" jdbcType="TINYINT" property="deleted" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, class_no, `name`, pid, `status`, relation_code, class_teacher_id, teacher_name, 
+    phone, create_time, update_time, deleted
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_class
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sys_class
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pan.entity.SysClass">
+    insert into sys_class (id, class_no, `name`, 
+      pid, `status`, relation_code, 
+      class_teacher_id, teacher_name, phone, 
+      create_time, update_time, deleted
+      )
+    values (#{id,jdbcType=VARCHAR}, #{classNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{relationCode,jdbcType=VARCHAR}, 
+      #{classTeacherId,jdbcType=VARCHAR}, #{teacherName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=TINYINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pan.entity.SysClass">
+    insert into sys_class
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="classNo != null">
+        class_no,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="relationCode != null">
+        relation_code,
+      </if>
+      <if test="classTeacherId != null">
+        class_teacher_id,
+      </if>
+      <if test="teacherName != null">
+        teacher_name,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="classNo != null">
+        #{classNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="relationCode != null">
+        #{relationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classTeacherId != null">
+        #{classTeacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pan.entity.SysClass">
+    update sys_class
+    <set>
+      <if test="classNo != null">
+        class_no = #{classNo,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="relationCode != null">
+        relation_code = #{relationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="classTeacherId != null">
+        class_teacher_id = #{classTeacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherName != null">
+        teacher_name = #{teacherName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pan.entity.SysClass">
+    update sys_class
+    set class_no = #{classNo,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      relation_code = #{relationCode,jdbcType=VARCHAR},
+      class_teacher_id = #{classTeacherId,jdbcType=VARCHAR},
+      teacher_name = #{teacherName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=TINYINT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getAllClassInfo" resultMap="BaseResultMap">
+
+    select <include refid="Base_Column_List"></include>
+    from sys_class
+    where deleted=1
+
+  </select>
+
+  <update id="updateRelationCode">
+    update sys_class
+    <!--将relation_code中所有出现的oldStr替换为newStr。-->
+    set relation_code=replace(relation_code, #{oldStr}, #{newStr})
+    <!-- CONCAT（）函数用于将多个字符串连接成一个字符串 -->
+    where relation_code like CONCAT(#{relationCode},'%') <!-- relation_code% -->
+  </update>
+
+  <!-- @Description:     获取该组织下所有子集包括自己-->
+  <!-- @Author:          小霍-->
+  <select id="selectChildIds" resultType="java.lang.String">
+    select id
+    from sys_class
+    where relation_code LIKE CONCAT(#{relationCode},'%') and deleted=1
+  </select>
+
+  <!-- @Description:     更新删除部门数据-->
+  <!-- @Author:          小霍-->
+  <update id="deletedClass">
+    update sys_class
+    <set>
+      deleted = 0,
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id in
+    <foreach collection="list" open="(" close=")" separator="," item="item">
+      #{item}
+    </foreach>
+  </update>
+</mapper>
